@@ -4,7 +4,7 @@ const forecastParser = require('./ForecastParser.js');
 
 class Forecast {
     constructor(api) {
-        this.api = api;
+        this.api = process.env.api;
         this.current = {};
         this.updater = new Emitter();
     }
