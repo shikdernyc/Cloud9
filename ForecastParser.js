@@ -16,16 +16,22 @@ module.exports = {
         }
     },
 
-    getTime: function(timeStamp) {
-        let date = new Date(timeStamp * 1000);
-        let day = formattedDay(date.getDay());
-        let apm = (parseInt(date.getHours() / 12) == 1 ? "PM" : "AM");
-        let hour = (date.getHours() == 12 ? 12 : date.getHours() % 12) + " " + apm;
-        return {
-            day: day,
-            hour: hour
+    hourlyData: function(JSONData){
+        let hours = [];
+        for(hour in JSONData.data){
+            hrData = JSONData.data[hr];
+            time = getTime()
+            hours.push(new HourForecast(hrData.summary, getTime(hrData.time).hour, hrData.icon, hrData.temperature));
         }
+        return hours;
     }
+}
+
+let HourForecast = function (summary, time, condition, temperature) {
+    this.summary = summary;
+    this.time = time;
+    this.condition = condition;
+    this.temperature = temperature;
 }
 
 let formattedDay = function formattedDay(day) {
@@ -52,6 +58,17 @@ let formattedDay = function formattedDay(day) {
             day = "Saturday";
     }
     return day;
+}
+
+
+const getTime = function(timeStamp) {
+    let date = new Date(timeStamp * 1000);
+    let day = formattedDay(date.getDay());
+    let hour = (date.getHours() == 12 ? 12 : date.getHours() % 12) + " " + apm;
+    return {
+        day: day,
+        hour: hour
+    }
 }
 
     // module.exports = currentData;
