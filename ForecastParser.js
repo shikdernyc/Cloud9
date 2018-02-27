@@ -23,7 +23,29 @@ module.exports = {
             hours.push(new HourForecast(getTime(hrData.time).hour, hrData.icon, hrData.temperature));
         }
         return hours;
+    },
+
+    dailyData: function(JSONData)
+    {
+        // console.dir(JSONData.data[0]);
+        let days = [];
+        // console.dir(JSONData);
+        for(let day = 0 ; day < 7 ; day++)
+        {
+            let today = JSONData.data[day];
+            days.push(new dayForecast(getTime(today.time).day, today.icon, today.temperatureLow, today.temperatureHigh));
+        }
+
+        return days;
     }
+}
+
+const dayForecast = function(day, condition, low, high)
+{
+    this.day = day;
+    this.condition = condition;
+    this.day = low;
+    this.high = high;
 }
 
 const HourForecast = function (time, condition, temperature) {
