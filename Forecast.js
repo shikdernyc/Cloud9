@@ -1,13 +1,13 @@
-const Emitter = require('events');
 const https = require('https');
 const forecastParser = require('./ForecastParser.js');
-
+const Emitter = require('events');
 class Forecast {
     constructor(api) {
         this.api = process.env.api;
+        this.updater = new Emitter();
         this.current = {};
         this.hourly = [];
-        this.updater = new Emitter();
+        this.daily = [];
         this.timeZone="";
     }
 
@@ -24,9 +24,9 @@ class Forecast {
                 JSONData = JSON.parse(JSONData);
                 console.log("JSONData Received from Forecast.io")
                 this.timeZone = JSONData.timezone;
-                // console.dir(JSONData);
                 this.current = forecastParser.currentData(JSONData.currently);
                 this.hourly = forecastParser.hourlyData(JSONData.hourly);
+                this.daily = forecastParser.dailyData(JSONData.daily);
                 this.updater.emit("update");
             })
         })
