@@ -6,7 +6,9 @@ class Forecast {
     constructor(api) {
         this.api = process.env.api;
         this.current = {};
+        this.hourly = [];
         this.updater = new Emitter();
+        this.timeZone="";
     }
 
     //Get's weather data from a certain location
@@ -21,8 +23,10 @@ class Forecast {
             res.on('end', () => {
                 JSONData = JSON.parse(JSONData);
                 console.log("JSONData Received from Forecast.io")
+                this.timeZone = JSONData.timezone;
                 // console.dir(JSONData);
                 this.current = forecastParser.currentData(JSONData.currently);
+                this.hourly = forecastParser.hourlyData(JSONData.hourly);
                 this.updater.emit("update");
             })
         })
