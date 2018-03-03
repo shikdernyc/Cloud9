@@ -1,11 +1,9 @@
 module.exports = {
     currentData: function(JSONCurrently)
     {
-        // console.log("Data Received")
-        // console.dir(JSONCurrently);
         return{
             summary: JSONCurrently.summary,
-            icon: JSONCurrently.icon,
+            icon: getIconLocation(JSONCurrently.icon),
             temperature: JSONCurrently.temperature,
             apparentTemperature: JSONCurrently.apparentTemperature,
             humidity: JSONCurrently.humidity,
@@ -27,9 +25,7 @@ module.exports = {
 
     dailyData: function(JSONData)
     {
-        // console.dir(JSONData.data[0]);
         let days = [];
-        // console.dir(JSONData);
         for(let day = 0 ; day < 7 ; day++)
         {
             let today = JSONData.data[day];
@@ -40,17 +36,17 @@ module.exports = {
     }
 }
 
-const dayForecast = function(day, condition, low, high)
+let dayForecast = function(day, icon, low, high)
 {
     this.day = day;
-    this.condition = condition;
-    this.day = low;
+    this.icon = getIconLocation(icon);
+    this.low = low;
     this.high = high;
 }
 
-const HourForecast = function (time, condition, temperature) {
+let HourForecast = function (time, icon, temperature) {
     this.time = time;
-    this.condition = condition;
+    this.icon = getIconLocation(icon);
     this.temperature = temperature;
 }
 
@@ -90,3 +86,9 @@ const getTime = function(timeStamp) {
         hour: hour
     }
 }
+
+const getIconLocation = function(icon)
+{
+    let location = '../img/icon/';
+    return location += icon + '.png';
+};
