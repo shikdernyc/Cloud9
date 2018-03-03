@@ -3,11 +3,11 @@ const app = express();
 require('dotenv').config();
 const Forecast = require('./data/Forecast');
 
-const port = 3000;
+const port = 80;
 
 app.listen(port);
 
-console.log("Server Running on: localhost:" + port);
+// console.log("Server Running on: localhost:" + port);
 
 const htmlUpdater = function(res, currently, hours, days)
 {
