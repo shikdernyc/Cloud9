@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        title Cloud 9
+    body
+        form
+            input(type='text', name='latitude', value='37.8267')
+            input(type='text', name='longitude', value='-122.4233')
+            button(type='submit') Submit
+        ul#currently
+            h2 Daily
+            li summary: #{summary}
+            li icon: #{icon}
+            li temperature: #{temperature}
+            li apparentTemperature: #{apparentTemperature}
+            li humidity: #{humidity}
+            li pressure: #{pressure}
+            li windSpeed: #{windSpeed}
+            li uvIndex: #{uvIndex}
+            li visibility: #{visibility}
+        table
+            h2 Hourly:
+            tr
+                th time
+                th icon
+                th temperature
+            #hours-arr
+                each hour in hours
+                    tr
+                        th #{hour.time}
+                        th #{hour.icon}
+                        th #{hour.temperature}
+        table
+            h3 Daily
+            tr
+                th day
+                th icon
+                th low
+                th high
+            #days-arr
+                each day in days
+                    tr
+                        th #{day.day}
+                        th #{day.icon}
+                        th #{day.low}
+                        th #{day.high}
