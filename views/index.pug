@@ -4,9 +4,8 @@ html
         title Cloud 9
     body
         form(method='get', action='location')
-            input(type='text', name='address', value='37.8267')
+            input(type='text', name='address', placeholder=formattedAddress)
             button(type='submit') Submit
-        #{currently}
         ul
             h2 Daily
             li summary: #{summary}
