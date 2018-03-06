@@ -35,10 +35,11 @@ class LocationParser{
         this.getJSONData(address, (status, results)=>{
             if(status === 'OK')
             {
-                callback(results[0].geometry.location);
+                callback(results[0].geometry.location, results[0].formatted_address);
             }
             else
             {
+                console.log(status);
                 callback(null);
             }
         });
