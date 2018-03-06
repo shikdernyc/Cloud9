@@ -9,8 +9,12 @@ class Forecast {
         this.timeZone="";
     }
 
-    //Get's weather src from a certain location
-    //callback function returns the current data, hourly data and daily data
+    /**
+     * Get weather from a certain location
+     * @param latitude - Location's Latitude
+     * @param longitude - Location's Longitude
+     * @param callback - Returns a function with current, hourly and daily data
+     */
     getWeatherData(latitude, longitude, callback) {
         let link = 'https://api.darksky.net/forecast/' + this.api + '/' + latitude + ',' + longitude;
         let JSONData = "";

@@ -7,6 +7,10 @@ class LocationParser{
         this.api = api;
     }
 
+    /**
+     * Get's JSON Data from a certain address
+     * @param address - Location's Address
+     */
     getJSONData (address) {
         let link = url + "json?address=" + address + "&" + "key=" + api;
         https.get(link, res => {

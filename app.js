@@ -10,8 +10,8 @@ app.listen(port);
 console.log("Server Running on: localhost:" + port);
 
 //Populating Data from .env files
-geocodingAPI = process.env.GEO_API;
 forecastAPI = process.env.FORECAST_API;
+geocodingAPI = process.env.GEO_API;
 
 //Setting up routing
 app.use(router.router);
@@ -28,8 +28,10 @@ router.event.on("get-forecast",(res,latitude,longitude)=>{
 let weather = new Forecast(forecastAPI);
 
 
+//Update weather display
 const updateHTML = function(res, currently, hours, days)
 {
+    //TODO: Create a HTML handler package to handle this and future HTML related things
     res.statusCode = 200;
     res.contentType('text/html');
     console.dir({currently, hours});
