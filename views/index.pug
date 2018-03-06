@@ -3,11 +3,12 @@ html
     head
         title Cloud 9
     body
-        form
+        form(method='get', action='location')
             input(type='text', name='latitude', value='37.8267')
             input(type='text', name='longitude', value='-122.4233')
             button(type='submit') Submit
-        ul#currently
+        #{currently}
+        ul
             h2 Daily
             li summary: #{summary}
             li icon: #{icon}
@@ -25,11 +26,12 @@ html
                 th icon
                 th temperature
             #hours-arr
-                each hour in hours
-                    tr
-                        th #{hour.time}
-                        th #{hour.icon}
-                        th #{hour.temperature}
+                if hours
+                    each hour in hours
+                        tr
+                            th #{hour.time}
+                            th #{hour.icon}
+                            th #{hour.temperature}
         table
             h3 Daily
             tr
@@ -38,9 +40,10 @@ html
                 th low
                 th high
             #days-arr
-                each day in days
-                    tr
-                        th #{day.day}
-                        th #{day.icon}
-                        th #{day.low}
-                        th #{day.high}
+                if days
+                    each day in days
+                        tr
+                            th #{day.day}
+                            th #{day.icon}
+                            th #{day.low}
+                            th #{day.high}
