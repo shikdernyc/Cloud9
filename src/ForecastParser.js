@@ -14,19 +14,19 @@ module.exports = {
         }
     },
 
-    hourlyData: function(JSONData){
+    hourlyData: function(JSONData, numOfHours){
         let hours = [];
-        for(let hr = 0 ; hr < 7 ; hr++){
+        for(let hr = 0 ; hr < numOfHours ; hr++){
             let hrData = JSONData.data[hr];
             hours.push(new HourForecast(getTime(hrData.time).hour, hrData.icon, hrData.temperature));
         }
         return hours;
     },
 
-    dailyData: function(JSONData)
+    dailyData: function(JSONData, numOfDays)
     {
         let days = [];
-        for(let day = 0 ; day < 7 ; day++)
+        for(let day = 0 ; day < numOfDays ; day++)
         {
             let today = JSONData.data[day];
             days.push(new dayForecast(getTime(today.time).day, today.icon, today.temperatureLow, today.temperatureHigh));
