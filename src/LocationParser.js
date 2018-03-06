@@ -26,6 +26,11 @@ class LocationParser{
         })
     }
 
+    /**
+     * Returns the latitude and longitude values for a location
+     * @param address - human writable address
+     * @param callback - A json object with lat and lng
+     */
     getCodedLocation(address, callback){
         this.getJSONData(address, (status, results)=>{
             if(status === 'OK')
@@ -40,9 +45,4 @@ class LocationParser{
     }
 }
 
-let lp = new LocationParser('AIzaSyCBLWfBy_il1velXGorewJXfriEsQ0grbc');
-let address='1600+Amphitheatre+Parkway,+Mountain+View,+CA';
-
-lp.getCodedLocation(address, (location)=>{
-    console.dir(location);
-})
+module.exports = LocationParser;
